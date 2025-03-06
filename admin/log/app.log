@@ -1,0 +1,44 @@
+2025-02-05 16:24:26,724 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:24:26,724 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:25:07,796 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:25:07,796 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:25:07,819 - chetu_project - [admin] - routes.delete_bus_data() - INFO - <Response 293 bytes [200 OK]>
+2025-02-05 16:25:07,819 - chetu_project - [admin] - routes.delete_bus_data() - INFO - <Response 293 bytes [200 OK]>
+2025-02-05 16:25:47,828 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:25:47,828 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:25:47,853 - chetu_project - [admin] - routes.delete_bus_data() - INFO - {'error': 'errors(pymysql.err.IntegrityError) (1048, "Column \'bus_id\' cannot be null")\n[SQL: UPDATE schedules SET bus_id=%(bus_id)s WHERE schedules.id = %(schedules_id)s]\n[parameters: {\'bus_id\': None, \'schedules_id\': 2}]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)'}
+2025-02-05 16:25:47,853 - chetu_project - [admin] - routes.delete_bus_data() - INFO - {'error': 'errors(pymysql.err.IntegrityError) (1048, "Column \'bus_id\' cannot be null")\n[SQL: UPDATE schedules SET bus_id=%(bus_id)s WHERE schedules.id = %(schedules_id)s]\n[parameters: {\'bus_id\': None, \'schedules_id\': 2}]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)'}
+2025-02-05 16:29:02,451 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:29:02,451 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:29:02,463 - chetu_project - [admin] - services.delete_bus() - ERROR - Object of type set is not JSON serializable
+2025-02-05 16:29:02,463 - chetu_project - [admin] - services.delete_bus() - ERROR - Object of type set is not JSON serializable
+2025-02-05 16:32:39,629 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:32:39,629 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:33:30,868 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:33:30,868 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:33:58,969 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:33:58,969 - chetu_project - [admin] - routes.delete_bus_data() - DEBUG - hi
+2025-02-05 16:52:44,099 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'list' object has no attribute 'to_dict'")}
+2025-02-05 16:52:44,099 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'list' object has no attribute 'to_dict'")}
+2025-02-05 16:54:09,734 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'list' object has no attribute 'to_dict'")}
+2025-02-05 16:54:09,734 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'list' object has no attribute 'to_dict'")}
+2025-02-05 16:56:27,709 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 16:56:27,709 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 17:04:49,323 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 17:04:49,323 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:12:29,970 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:12:29,970 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:13:13,773 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:13:13,773 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:14:28,765 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:14:28,765 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:15:50,671 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:15:50,671 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:19:41,072 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:19:41,072 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:19:49,760 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:19:49,760 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:19:51,241 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:19:51,241 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:21:36,877 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
+2025-02-05 22:21:36,877 - chetu_project - [admin] - services.get_schedules() - ERROR - {AttributeError("'Query' object has no attribute 'to_dict'")}
