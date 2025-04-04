@@ -24,7 +24,7 @@ jwt = JWTManager(app)
 
 EXCLUDED_ROUTES=['/login','/register']
 
-@app.before_request
+
 def check_jwt():
     """Middleware to enforce JWT authentication on all routes except the excluded ones."""
     if request.path not in EXCLUDED_ROUTES:
