@@ -6,7 +6,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from datetime import timedelta
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:admin123@localhost:3306/admin'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Pavan6458@@localhost:3306/chethana'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 import os
 # from dotenv import load_dotenv
