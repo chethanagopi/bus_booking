@@ -6,8 +6,9 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from datetime import timedelta
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:admin123@localhost:3306/admin'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://chethana:Pavan6458%40@16.171.152.84:3306/chethana'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['UPLOAD_FOLDER'] = 'static/uploads/profile_photos'
 import os
 # from dotenv import load_dotenv
 
@@ -23,7 +24,7 @@ jwt = JWTManager(app)
 
 EXCLUDED_ROUTES=['/login','/register']
 
-@app.before_request
+
 def check_jwt():
     """Middleware to enforce JWT authentication on all routes except the excluded ones."""
     if request.path not in EXCLUDED_ROUTES:

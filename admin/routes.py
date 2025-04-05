@@ -120,17 +120,46 @@ def add_schedule_data():
     except Exception as e:
         return jsonify({"error":str(e)})
     
-@bus_bp.route("user", methods=['POST'])
+@bus_bp.route("/user", methods=['POST'])  # Added missing leading "/"
 def add_user_details():
     try:
-        data=request.get_json()
-        user=post_user(data)
-        return user
-    except Exception as e:
-        return jsonify({"error":str(e)})
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "Invalid or missing JSON data"}), 400
+        
+        return post_user(data)
 
-import random   
-@app.route("/generate", methods=['GET'])
-def generate_random_number():
-    random_number = random.randint(1, 1000)
-    return jsonify({"random_number": random_number})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+
+
+# =================================admin==============================
+@bus_bp.route("/add/admin", methods=['POST'])
+def post_addmin_details_():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "Invalid or missing JSON data"}), 400
+        
+        return post_admin_details(data)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@bus_bp.route("/get/admin", methods=['GET'])
+def get_all_admins_():
+    return get_all_admins()
+
+from flask import Blueprint, request, jsonify, current_app
+@bus_bp.route('/user/<int:user_id>/upload_photo', methods=['POST'])
+def upload_photo_route(user_id):
+    try:
+        file = request.files.get('photo')
+        upload_folder = current_app.config['UPLOAD_FOLDER']
+        response, status_code = upload_profile_photo(user_id, file, upload_folder)
+        return jsonify(response), status_code
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

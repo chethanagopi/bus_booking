@@ -131,24 +131,98 @@ def post_schedule(data):
         return jsonify({"error":"database errors"+str(e)})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt()     
 def post_user(data):
     try:
-        username=data.get("username")
-        password=data.get("password")
-        if not all([username,password]):
-            return jsonify({"message":"some missing"})
-        else:
-            user=User(username=username,password=password)
-            user_list={k:l for k,l in user.__dict__.items() if not k.startswith('_')}
-            db.session.add(user)
-            db.session.commit()
-            return jsonify({"message":"success","data":user_list})
+        username = data.get("username")
+        password = data.get("password")  # Fixed variable name
+
+        if not all([username, password]):
+            return jsonify({"message": "Some fields are missing"}), 400  # Bad Request
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        user = User(username=username, password=hashed_password)  # Use correct field name
+        db.session.add(user)
+        db.session.commit()
+
+        return jsonify({"message": "success", "data": user.to_dict()}), 201  # Created
+
+    except Exception as e:
+        db.session.rollback()  # Ensure rollback on error
+        return jsonify({"error": str(e)}), 500  # Internal Server Error
+
+
+# =================================admin==============================
+
+def post_admin_details(data):
+    try:
+        if not isinstance(data, dict):
+            return jsonify({"error": "Invalid input format"}), 400
+
+        phone = data.get("phone")
+        email = data.get("email")
+        password = data.get("password")  # Fix typo to "password" if needed
+        company_name = data.get("company_name")
+
+        if not all([phone, email, password, company_name]):
+            return jsonify({"error": "All fields are required"}), 400
+
+        admin = Bus_admin(phone=phone, email=email, password=password, company_name=company_name)
+        db.session.add(admin)
+        db.session.commit()
+
+        bus_admin = {
+            "password": admin.password,
+            "phone": admin.phone,
+            "email": admin.email,
+            "company_name": admin.company_name
+        }
+
+        return jsonify({"data": "success", "message": bus_admin}), 201
+
     except SQLAlchemyError as e:
         db.session.rollback()
-        return jsonify({"error":str(e)})
+        return jsonify({"error": str(e)}), 500
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+def get_all_admins():
+    try:
+        admins=Bus_admin.query.all()
+        if not admins:
+            return jsonify({'error':"no data"}), 404
+        admin_=[admin.to_dict() for admin in admins]
+        return jsonify({"msg":admin_})
     except Exception as e:
         return jsonify({"error":str(e)})
+    
+# ==============================bus_operator===============================
+import os
+from werkzeug.utils import secure_filename
 
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def upload_profile_photo(user_id, file, upload_folder):
+    if not file or file.filename == '':
+        return {"error": "No file provided"}, 400
+
+    if not allowed_file(file.filename):
+        return {"error": "Invalid file type"}, 400
+
+    user = User.query.get(user_id)
+    if not user:
+        return {"error": "User not found"}, 404
+
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(upload_folder, filename)
+    file.save(filepath)
+
+    user.profile_photo = filepath
+    db.session.commit()
+
+    return {"message": "Profile photo uploaded", "data": user.to_dict()}, 200

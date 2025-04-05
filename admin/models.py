@@ -1,6 +1,39 @@
 from flask_sqlalchemy import SQLAlchemy
 from app import db  # Assuming you have a 'db' object initialized in 'app.py'
 
+class Bus_admin(db.Model):
+    __tablename__ = "bus_admin"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    phone = db.Column(db.String(20), nullable=False)  # Change from Integer to String
+    email = db.Column(db.String(225), nullable=False, unique=True)
+    password = db.Column(db.String(225), nullable=False)
+    company_name = db.Column(db.String(225), nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "phone": self.phone,
+            "email": self.email,
+            "password": self.password,
+            "company_name": self.company_name
+        }
+
+class Bus_Operator(db.Model):
+    __tablename__ ='bus_operator'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True) 
+    operator_name=db.Column(db.String(24),nullable=False)
+    operator_phone=db.Column(db.Integer,nullable=False)
+    operator_email=db.Column(db.String(225),nullable=False)
+    admin_id=db.Column(db.Integer, db.ForeignKey('bus_admin.id'),nullable=False)
+    admin=db.relationship('Bus_admin', backref=db.backref('operators',lazy=True))
+
+    def to_dict(self):
+        return {'id':self.id,
+                'operator_name':self.operator_name,
+                'operator_phone':self.operator_phone,
+                'operator_email':self.operator_email,
+                'admin_id':self.admin_id}
+
 class Bus(db.Model):
     __tablename__ = 'buses'
 
@@ -63,13 +96,17 @@ class Booking(db.Model):
         return f"<Booking {self.customer_name} at {self.booking_time}>"
     
 class User(db.Model):
-    __tablename__='users'
-    # id=db.Column(db.Integer,primary_Key=True,autoincrement=True)
-    id = db.Column(db.String, primary_key=True, autoincrement=True)
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(250), nullable=False) 
+    profile_photo = db.Column(db.String(255)) # Renamed from pasword
 
-    username=db.Column(db.String(100),unique=True,nullable=False)
-    password=db.Column(db.String(250),nullable=False)
     def to_dict(self):
-        return{"id":self.id,
-               "username":self.username,"password":self.password
+        return {
+            "id": self.id,
+            "username": self.username,
+            "password": self.password,
+             "profile_photo": self.profile_photo # Fixed field name
         }
+    
